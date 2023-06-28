@@ -12,17 +12,18 @@ import { useEffect, useRef, useState } from 'react';
 import { extractTwitterId } from '../utils';
 
 import { Tweet } from 'react-twitter-widgets';
+import { THEME, usePreferTheme } from '../hooks/usePreferTheme';
 
 const EMBED_TWITTER_WIDGET = 'embed_twitter_widget';
-const EMBED_TWITTER_WIDGET_RENDERER = 'embed_twitter_widget_renderer';
 
 export const EmbedTwitterWidget = () => {
   const plugin = usePlugin();
   const [id] = useState(nanoid());
-
   const widgetRef = useRef<HTMLDivElement | null>(null);
-
   const [twitterId, setTwitterId] = useState<string | null>();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const theme = usePreferTheme();
 
   const widgetContext = useRunAsync(
     () => plugin.widget.getWidgetContext<WidgetLocation.UnderRemEditor>(),
@@ -57,8 +58,19 @@ export const EmbedTwitterWidget = () => {
   return (
     <div>
       <div ref={widgetRef} id={EMBED_TWITTER_WIDGET + id} />
+      {loading && <div>Loading...</div>}
       {twitterId ? (
-        <Tweet tweetId={twitterId} options={{ theme: 'dark' }} />
+        <Tweet
+          tweetId={twitterId}
+          options={{ theme: theme === THEME.light ? 'light' : 'dark', cards: 'hidden' }}
+          onLoad={() => {
+            setLoading(false);
+          }}
+          renderError={(error) => {
+            console.error('Tweet render error', error);
+            return 'Could not load tweet! ';
+          }}
+        />
       ) : (
         `no valid twitter Id: ${twitterId}`
       )}
