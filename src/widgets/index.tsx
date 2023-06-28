@@ -1,42 +1,31 @@
 import { declareIndexPlugin, ReactRNPlugin, WidgetLocation } from '@remnote/plugin-sdk';
 import '../style.css';
 import '../App.css';
+import { EMBED_TWITTER_POWERUP } from '../constant';
 
 async function onActivate(plugin: ReactRNPlugin) {
-  // Register settings
-  await plugin.settings.registerStringSetting({
-    id: 'name',
-    title: 'What is your Name?',
-    defaultValue: 'Bob',
-  });
-
-  await plugin.settings.registerBooleanSetting({
-    id: 'pizza',
-    title: 'Do you like pizza?',
-    defaultValue: true,
-  });
-
-  await plugin.settings.registerNumberSetting({
-    id: 'favorite-number',
-    title: 'What is your favorite number?',
-    defaultValue: 42,
-  });
-
   // A command that inserts text into the editor if focused.
   await plugin.app.registerCommand({
-    id: 'editor-command',
-    name: 'Editor Command',
+    id: 'twitter',
+    name: 'Embed Twitter',
     action: async () => {
-      plugin.editor.insertPlainText('Hello World!');
+      const rem = await plugin.focus.getFocusedRem();
+      await rem?.addPowerup(EMBED_TWITTER_POWERUP);
     },
   });
 
-  // Show a toast notification to the user.
-  await plugin.app.toast("I'm a toast!");
+  await plugin.app.registerPowerup(
+    'EmbedTwitter',
+    EMBED_TWITTER_POWERUP,
+    'Embed Twitter Post into RemNote',
+    {
+      slots: [{ code: 'PostUrl', name: 'PostUrl' }],
+    }
+  );
 
-  // Register a sidebar widget.
-  await plugin.app.registerWidget('embed_twitter', WidgetLocation.RightSidebar, {
+  await plugin.app.registerWidget('embed_twitter', WidgetLocation.UnderRemEditor, {
     dimensions: { height: 'auto', width: '100%' },
+    powerupFilter: EMBED_TWITTER_POWERUP,
   });
 }
 
