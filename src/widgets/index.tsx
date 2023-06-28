@@ -35,7 +35,7 @@ async function onActivate(plugin: ReactRNPlugin) {
   await plugin.app.toast("I'm a toast!");
 
   // Register a sidebar widget.
-  await plugin.app.registerWidget('sample_widget', WidgetLocation.RightSidebar, {
+  await plugin.app.registerWidget('embed_twitter', WidgetLocation.RightSidebar, {
     dimensions: { height: 'auto', width: '100%' },
   });
 }

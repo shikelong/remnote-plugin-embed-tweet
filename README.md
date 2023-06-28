@@ -1,6 +1,6 @@
-# remnote-plugin-ember-twitter
+# remnote-plugin-embed-twitter
 
-support ember twitter post into RemNote
+support embed twitter post into RemNote
 
 ## Usage
 

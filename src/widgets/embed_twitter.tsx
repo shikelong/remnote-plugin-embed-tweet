@@ -1,6 +1,6 @@
 import { usePlugin, renderWidget, useTracker } from '@remnote/plugin-sdk';
 
-export const SampleWidget = () => {
+export const EmbedTwitterWidget = () => {
   const plugin = usePlugin();
 
   let name = useTracker(() => plugin.settings.getSetting<string>('name'));
@@ -18,4 +18,4 @@ export const SampleWidget = () => {
   );
 };
 
-renderWidget(SampleWidget);
+renderWidget(EmbedTwitterWidget);
