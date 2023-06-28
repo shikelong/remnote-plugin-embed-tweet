@@ -1,1 +1,1 @@
-export const EMBED_TWITTER_POWERUP = 'embed_twitter_powerup';
+export const EMBED_TWEET_POWERUP = 'embed_tweet_powerup';

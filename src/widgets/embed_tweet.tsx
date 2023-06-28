@@ -9,18 +9,18 @@ import {
 import { debounce } from 'debounce';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef, useState } from 'react';
-import { extractTwitterId } from '../utils';
+import { extractTweetId } from '../utils';
 
 import { Tweet } from 'react-twitter-widgets';
 import { THEME, usePreferTheme } from '../hooks/usePreferTheme';
 
-const EMBED_TWITTER_WIDGET = 'embed_twitter_widget';
+const EMBED_TWEET_WIDGET = 'embed_tweet_widget';
 
-export const EmbedTwitterWidget = () => {
+export const EmbedTweetWidget = () => {
   const plugin = usePlugin();
   const [id] = useState(nanoid());
   const widgetRef = useRef<HTMLDivElement | null>(null);
-  const [twitterId, setTwitterId] = useState<string | null>();
+  const [tweetId, setTweetId] = useState<string | null>();
   const [loading, setLoading] = useState<boolean>(true);
 
   const theme = usePreferTheme();
@@ -36,32 +36,32 @@ export const EmbedTwitterWidget = () => {
     return text?.toString() || '';
   };
 
-  const getTwitterId = async () => {
+  const getTweetId = async () => {
     const remId = widgetContext?.remId;
     const text = remId && (await getRemText(remId));
-    const twitterId = extractTwitterId(text ?? '');
-    setTwitterId(twitterId);
+    const tweetId = extractTweetId(text ?? '');
+    setTweetId(tweetId);
   };
 
   useAPIEventListener(
     AppEvents.RemChanged,
     widgetContext?.remId,
-    debounce(() => getTwitterId(), 500)
+    debounce(() => getTweetId(), 500)
   );
 
   useEffect(() => {
     if (widgetContext?.remId && widgetRef.current) {
-      getTwitterId();
+      getTweetId();
     }
   }, [widgetContext?.remId, widgetRef.current]);
 
   return (
     <div>
-      <div ref={widgetRef} id={EMBED_TWITTER_WIDGET + id} />
+      <div ref={widgetRef} id={EMBED_TWEET_WIDGET + id} />
       {loading && <div>Loading...</div>}
-      {twitterId ? (
+      {tweetId ? (
         <Tweet
-          tweetId={twitterId}
+          tweetId={tweetId}
           options={{ theme: theme === THEME.light ? 'light' : 'dark', cards: 'hidden' }}
           onLoad={() => {
             setLoading(false);
@@ -72,10 +72,10 @@ export const EmbedTwitterWidget = () => {
           }}
         />
       ) : (
-        `no valid twitter Id: ${twitterId}`
+        `no valid tweet Id: ${tweetId}`
       )}
     </div>
   );
 };
 
-renderWidget(EmbedTwitterWidget);
+renderWidget(EmbedTweetWidget);
