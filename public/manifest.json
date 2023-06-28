@@ -1,17 +1,16 @@
 {
+  "author": "kelongShi",
+  "name": "remnote-plugin-ember-twitter",
+  "description": "support ember twitter post into RemNote",
+  "enableOnMobile": true,
+  "id": "kelongShi-scn5442",
   "manifestVersion": 1,
-  "id": "plugin_template",
-  "name": "Plugin Template",
-  "author": "remnote",
-  "repoUrl": "",
+  "repoUrl": "https://github.com/shikelong/remnote-plugin-ember-twitter",
   "version": {
     "major": 0,
     "minor": 0,
     "patch": 1
   },
-  "theme": [],
-  "enableOnMobile": false,
-  "description": "",
   "requestNative": false,
   "requiredScopes": [
     {
