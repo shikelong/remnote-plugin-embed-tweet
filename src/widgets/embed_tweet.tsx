@@ -58,7 +58,7 @@ export const EmbedTweetWidget = () => {
   return (
     <div>
       <div ref={widgetRef} id={EMBED_TWEET_WIDGET + id} />
-      {loading && <div>Loading...</div>}
+      {loading && tweetId && <div>Loading...</div>}
       {tweetId ? (
         <Tweet
           tweetId={tweetId}
@@ -72,7 +72,18 @@ export const EmbedTweetWidget = () => {
           }}
         />
       ) : (
-        `no valid tweet Id: ${tweetId}`
+        <p
+          style={{
+            color: 'red',
+            border: '1px solid',
+            padding: '0.5em 1em',
+            borderRadius: 10,
+            fontSize: 'smaller',
+          }}
+        >
+          Can't get a valid Tweet id from tagged Rem, make sure the rem content is a valid tweet
+          link like <a>https://twitter.com/elonmusk/status/1673976802103148544</a>
+        </p>
       )}
     </div>
   );
