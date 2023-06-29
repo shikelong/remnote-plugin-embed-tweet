@@ -3,7 +3,7 @@
   "name": "remnote-plugin-embed-tweet",
   "description": "support embed tweet post into RemNote",
   "enableOnMobile": true,
-  "id": "kelongShi-scn5442",
+  "id": "embed_tweet_plugin",
   "manifestVersion": 1,
   "repoUrl": "https://github.com/shikelong/remnote-plugin-embed-tweet",
   "version": {
