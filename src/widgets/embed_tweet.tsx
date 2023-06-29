@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 import { extractTweetId } from '../utils';
 
 import { Tweet } from 'react-twitter-widgets';
-import { THEME, usePreferTheme } from '../hooks/usePreferTheme';
+import { useTweetOptions } from '../hooks/useTweetOptions';
 
 const EMBED_TWEET_WIDGET = 'embed_tweet_widget';
 
@@ -23,7 +23,7 @@ export const EmbedTweetWidget = () => {
   const [tweetId, setTweetId] = useState<string | null>();
   const [loading, setLoading] = useState<boolean>(true);
 
-  const theme = usePreferTheme();
+  const tweetOptions = useTweetOptions();
 
   const widgetContext = useRunAsync(
     () => plugin.widget.getWidgetContext<WidgetLocation.UnderRemEditor>(),
@@ -62,11 +62,7 @@ export const EmbedTweetWidget = () => {
       {tweetId ? (
         <Tweet
           tweetId={tweetId}
-          options={{
-            theme: theme === THEME.light ? 'light' : 'dark',
-            cards: 'hidden',
-            align: 'center',
-          }}
+          options={tweetOptions}
           onLoad={() => {
             setLoading(false);
           }}

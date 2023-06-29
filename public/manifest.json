@@ -1,15 +1,15 @@
 {
   "author": "kelongShi",
-  "name": "remnote-plugin-embed-tweet",
+  "name": "Embed Tweet",
   "description": "support embed tweet post into RemNote",
   "enableOnMobile": true,
   "id": "embed_tweet_plugin",
   "manifestVersion": 1,
   "repoUrl": "https://github.com/shikelong/remnote-plugin-embed-tweet",
   "version": {
-    "major": 0,
+    "major": 1,
     "minor": 0,
-    "patch": 2
+    "patch": 0
   },
   "requestNative": false,
   "requiredScopes": [

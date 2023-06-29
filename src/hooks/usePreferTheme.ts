@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-
-export enum THEME {
-  dark,
-  light,
-}
+import { THEME } from '../constant';
 
 function getCurrentTheme(): THEME {
   if (document.body.classList.contains('light')) {
-    return THEME.light;
+    return 'light';
   }
-  return THEME.dark;
+  return 'dark';
 }
 
 export function usePreferTheme(): THEME {
