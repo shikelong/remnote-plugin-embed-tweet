@@ -62,12 +62,17 @@ export const EmbedTweetWidget = () => {
       {tweetId ? (
         <Tweet
           tweetId={tweetId}
-          options={{ theme: theme === THEME.light ? 'light' : 'dark', cards: 'hidden' }}
+          options={{
+            theme: theme === THEME.light ? 'light' : 'dark',
+            cards: 'hidden',
+            align: 'center',
+          }}
           onLoad={() => {
             setLoading(false);
           }}
           renderError={(error) => {
             console.error('Tweet render error', error);
+            setLoading(false);
             return 'Could not load tweet! ';
           }}
         />

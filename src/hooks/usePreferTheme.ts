@@ -16,6 +16,10 @@ export function usePreferTheme(): THEME {
   const [theme, setTheme] = useState(() => getCurrentTheme());
 
   useEffect(() => {
+    setTheme(getCurrentTheme());
+  }, []);
+
+  useEffect(() => {
     const observer = new MutationObserver((mutationsList) => {
       for (let mutation of mutationsList) {
         if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
