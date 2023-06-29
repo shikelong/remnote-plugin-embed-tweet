@@ -13,7 +13,7 @@ This plugin supports embedding Twitter tweets into RemNote! 🐦
 ## 📋 RoadMap
 
 - [x] Improve the tweet id parsing logic. `v1`
-- [ ] 🛠️ Allow users to set align/theme/cards as Plugin Settings. `v1`
+- [x] 🛠️ Allow users to set align/theme/cards as Plugin Settings. `v1`
 - [x] 📌 Add Unit Test `v1`
 - [ ] 🔄 Add a Loading Component `fast follow`
 - [ ] ❗ Add Error Message Components `fast follow`
