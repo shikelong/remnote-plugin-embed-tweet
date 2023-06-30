@@ -5,7 +5,8 @@ import { usePreferTheme } from './usePreferTheme';
 export type TweetOptions = {
   theme: 'light' | 'dark';
   cards: 'hidden' | null;
-  align: 'center' | 'left' | 'right';
+  //`right` and `left` not works.
+  align: 'center' | null;
 };
 
 export function useTweetOptions(): TweetOptions {
@@ -29,6 +30,6 @@ export function useTweetOptions(): TweetOptions {
   return {
     theme: theme === 'auto' || theme === undefined ? preferRemNoteTheme : theme,
     cards: compactCard ? 'hidden' : null,
-    align: align === 'center' ? 'center' : align === 'left' ? 'left' : 'right',
+    align: align === 'center' ? 'center' : null,
   };
 }

@@ -26,7 +26,7 @@ async function onActivate(plugin: ReactRNPlugin) {
   await plugin.settings.registerBooleanSetting({
     id: SETTING_IDs.compactCard,
     title: 'Compact Card',
-    defaultValue: false,
+    defaultValue: true,
     description: 'In compact mode, links are not expanded to photo, video or link preview.nm',
   });
 
@@ -46,8 +46,7 @@ async function onActivate(plugin: ReactRNPlugin) {
     title: 'Align',
     options: [
       { key: '1', value: 'left', label: 'Left' },
-      { key: '2', value: 'middle', label: 'Middle' },
-      { key: '3', value: 'right', label: 'Right' },
+      { key: '2', value: 'center', label: 'Center' },
     ],
     defaultValue: 'left',
   });

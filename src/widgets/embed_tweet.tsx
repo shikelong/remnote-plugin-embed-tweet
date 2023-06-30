@@ -8,18 +8,15 @@ import {
 } from '@remnote/plugin-sdk';
 import { debounce } from 'debounce';
 import { nanoid } from 'nanoid';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { extractTweetId } from '../utils';
 
 import { Tweet } from 'react-twitter-widgets';
 import { useTweetOptions } from '../hooks/useTweetOptions';
 
-const EMBED_TWEET_WIDGET = 'embed_tweet_widget';
-
 export const EmbedTweetWidget = () => {
   const plugin = usePlugin();
   const [id] = useState(nanoid());
-  const widgetRef = useRef<HTMLDivElement | null>(null);
   const [tweetId, setTweetId] = useState<string | null>();
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -50,14 +47,13 @@ export const EmbedTweetWidget = () => {
   );
 
   useEffect(() => {
-    if (widgetContext?.remId && widgetRef.current) {
+    if (widgetContext?.remId) {
       getTweetId();
     }
-  }, [widgetContext?.remId, widgetRef.current]);
+  }, [widgetContext?.remId]);
 
   return (
     <div>
-      <div ref={widgetRef} id={EMBED_TWEET_WIDGET + id} />
       {loading && tweetId && <div>Loading...</div>}
       {tweetId ? (
         <Tweet
