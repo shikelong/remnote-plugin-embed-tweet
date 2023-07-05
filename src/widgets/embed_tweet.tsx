@@ -7,8 +7,7 @@ import {
   useRunAsync,
 } from '@remnote/plugin-sdk';
 import { debounce } from 'debounce';
-import { nanoid } from 'nanoid';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { extractTweetId } from '../utils';
 
 import { Tweet } from 'react-twitter-widgets';
@@ -16,7 +15,6 @@ import { useTweetOptions } from '../hooks/useTweetOptions';
 
 export const EmbedTweetWidget = () => {
   const plugin = usePlugin();
-  const [id] = useState(nanoid());
   const [tweetId, setTweetId] = useState<string | null>();
   const [loading, setLoading] = useState<boolean>(true);
 
