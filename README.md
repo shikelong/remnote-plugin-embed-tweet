@@ -16,3 +16,8 @@ This plugin supports embedding Twitter tweets into RemNote! 🐦
 - [ ] ❗ Add Error Message Components `fast follow`
 - [ ] ⌨️ Allow typing of tweet URL or id in a popup input, similar to Notion! `fast follow`
 
+
+## Contribution
+
+Please folk the repo then create PR. I will review it and submit it to RemNote for review.
+
