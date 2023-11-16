@@ -20,7 +20,25 @@ describe('[extractTweetId]', () => {
       asdasd https://twitter.com/elonmusk/status/16734029637572442120?test=12213 postcontentxxxxx`,
       '1673402963757244420',
     ],
-    // add more test cases here
+    //support x.com
+    ['https://x.com/elonmusk/status/1673402963757244420', '1673402963757244420'],
+    ['x.com/elonmusk/status/1673402963757244420', '1673402963757244420'],
+    [' https://x.com/elonmusk/status/1673402963757244420 ', '1673402963757244420'],
+    ['https://x.com/elonmusk/status/1673402963757244420?test=12213', '1673402963757244420'],
+    [
+      'precontentxxxx https://x.com/elonmusk/status/1673402963757244420?test=12213 postcontentxxxxx',
+      '1673402963757244420',
+    ],
+    [
+      'precontentxxxx https://x.com/elonmusk/status/1673402963757244420?test=12213 xxxxasdasd https://x.com/elonmusk/status/16734029637572442120?test=12213 postcontentxxxxx',
+      '1673402963757244420',
+    ],
+    [
+      `precontentxxxx 
+      https://x.com/elonmusk/status/1673402963757244420?test=12213 xxxx
+      asdasd https://x.com/elonmusk/status/16734029637572442120?test=12213 postcontentxxxxx`,
+      '1673402963757244420',
+    ],
   ])('should get tweetId from valid string: %s', (input, expected) => {
     const tweetId = extractTweetId(input);
     expect(tweetId).toEqual(expected);
